@@ -1,0 +1,154 @@
+@charset 'UTF+8';
+
+/* custom scrollbar */
+*::-webkit-scrollbar {
+  width: 4px;
+  background-color: rgb(15 23 42);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(107 114 128);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(75 85 99);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: rgb(31 41 55);
+}
+
+/* buttons */
+.search-btn,
+.recipe-btn,
+.bmc-logo {
+  background-color: #d4a418;
+}
+
+.search-btn:hover,
+.recipe-btn:hover,
+.bmc-logo:hover {
+  background-color: #b89018;
+}
+
+.github-icon:hover {
+  background-color: #d4a418;
+}
+
+.recipe-btn {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* youtube video */
+.video-embed {
+  height: 315px;
+  width: min(100%, 560px);
+}
+
+@media (max-width: 480px) {
+  .video-embed {
+    height: 245px;
+  }
+}
+
+/* card */
+.card {
+  /* .max-w-sm: 24rem | 384px */
+  max-width: 20rem;
+}
+
+/* card image */
+.card-img-container {
+  height: 315px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-img-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* animation on page load */
+.anim-up,
+.anim-down {
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.anim-up {
+  transform: translateY(20px);
+}
+
+.anim-down {
+  transform: translateY(-20px);
+}
+
+.anim-up.animate,
+.anim-down.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* loading animation */
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.dot-1 {
+  animation-delay: 0.1s;
+}
+
+.dot-2 {
+  animation-delay: 0.2s;
+}
+
+.dot-3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+}
+
+/* search results animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

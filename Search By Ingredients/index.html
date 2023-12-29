@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-slate-900">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Primary Meta Tags -->
+    <title>Find Recipes with your Ingredient — AIFoodFlow</title>
+    <meta
+      name="title"
+      content="Find Recipes with your Ingredient — AIFoodFlow"
+    />
+    <meta
+      name="description"
+      content="A food recipe app built with JavaScript and Tailwind CSS where you can search recipes with an ingredient."
+    />
+    <meta name="keywords" content="recipe-app, fetch-api, mealdb-api" />
+
+    <!-- Alternate language versions of the page -->
+    <!-- <link rel="alternate" hreflang="{{LANGUAGE_CODE}}" href="{{ALTERNATE_PAGE_URL}}" /> -->
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./src/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./src/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./src/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- 
+    This favicon was generated using the following graphics from Twitter Twemoji:
+
+    - Graphics Title: 1f355.svg
+    - Graphics Author: Copyright 2020 Twitter, Inc and other contributors (https://github.com/twitter/twemoji)
+    - Graphics Source: https://github.com/twitter/twemoji/blob/master/assets/svg/1f355.svg
+    - Graphics License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+   -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://foodie-fetch.netlify.app" />
+    <meta
+      property="og:title"
+      content="Find Recipes with your Ingredient — AIFoodFlow"
+    />
+    <meta
+      property="og:description"
+      content="A food recipe app built with JavaScript and Tailwind CSS where you can search recipes with an ingredient."
+    />
+    <meta property="og:image" content="https://i.ibb.co/HDZCCqv/og-image.png" />
+    <meta property="og:site_name" content="AIFoodFlow" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://foodie-fetch.netlify.app" />
+    <meta property="twitter:title" content="Food Recipe App — AIFoodFlow" />
+    <meta
+      property="twitter:description"
+      content="A food recipe app built with JavaScript and Tailwind CSS where you can search recipes with an ingredient."
+    />
+    <meta
+      property="twitter:image"
+      content="https://i.ibb.co/HDZCCqv/og-image.png"
+    />
+
+    <!-- Schema markup for structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Foodie Fetch — Food Recipe App",
+        "description": "A food recipe app built with JavaScript and Tailwind CSS",
+        "url": "https://foodie-fetch.netlify.app",
+        "image": "https://i.ibb.co/HDZCCqv/og-image.png"
+      }
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./src/css/tailwind.css" />
+    <link rel="stylesheet" href="./src/css/utilities.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/d778668bce.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JX0QGFJ30G"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JX0QGFJ30G");
+    </script>
+  </head>
+
+  <body
+    class="relative flex min-h-screen flex-col bg-gradient-to-br from-slate-800 to-slate-900 font-sans text-white"
+  >
+    <div class="container mx-auto px-4">
+      <!-- === Header Section === -->
+      <header>
+        <!-- == Navbar == -->
+        <nav class="navbar anim-up fixed top-0 left-0 z-10 mt-0.5 w-full px-4">
+          <div
+            class="mx-auto mt-2 max-w-screen-xl rounded-lg border border-slate-600 bg-slate-900 bg-opacity-30 px-4 py-2.5 shadow-md backdrop-blur-lg backdrop-filter firefox:bg-opacity-90 sm:px-8"
+          >
+            <div class="flex items-center justify-between">
+              <!-- Logo -->
+              <div class="flex items-center space-x-2">
+                <img
+                  src="./src/icons/apple-touch-icon.png"
+                  class="h-auto w-8 sm:w-9"
+                  alt="foodie fetch Logo"
+                />
+                <span
+                  class="text-clamp-10-12 whitespace-nowrap font-semibold text-white"
+                  >AIFoodFlow</span
+                >
+              </div>
+
+              <!-- Star on GitHub btn -->
+              <div class="flex space-x-6">
+                <a
+                  href="https://github.com/Michael-2003/AIFoodFlow"
+                  target="_blank"
+                  class="github-icon rounded-lg bg-gray-700 py-2 px-2 text-white transition duration-500 ease-in-out hover:text-slate-900 sm:px-4"
+                >
+                  <span class="flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-github"></i>
+                    <span
+                      class="hidden whitespace-nowrap text-xs font-medium sm:block md:text-sm"
+                      >Star on GitHub</span
+                    ></span
+                  >
+                  <span class="sr-only">GitHub repository</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- === Main Content Section === -->
+      <main class="mb-72 flex-grow">
+        <!-- == Page title/headers == -->
+        <div class="header mt-28 mb-4 text-center">
+          <h1 class="hero-text anim-up mb-6 text-3xl font-bold md:text-4xl">
+            Find
+            <span
+              class="bg-gradient-to-r from-emerald-600 to-amber-500 bg-clip-text text-transparent"
+              >Recipes</span
+            >
+            with the
+            <span
+              class="mb-2 bg-gradient-to-r from-amber-500 to-emerald-600 bg-clip-text text-transparent"
+              >Ingredients</span
+            >
+            You Have! <span class="whitespace-nowrap">🧅🍅</span>
+          </h1>
+          <div
+            class="quote text-clamp-10-12 anim-up mx-auto max-w-4xl"
+            id="quote"
+          >
+            <!-- Dynamically generated food quote (stored in ./src/js/food-quotes.js) -->
+          </div>
+        </div>
+
+        <!-- == Search bar == -->
+        <form class="search-bar anim-up mx-auto mb-8 max-w-4xl py-4">
+          <label
+            for="search"
+            class="sr-only mb-2 text-sm font-medium text-white"
+            >Search</label
+          >
+          <div class="relative">
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+            >
+              <!-- Search icon -->
+              <svg
+                aria-hidden="true"
+                class="h-5 w-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="search-bar"
+              class="block w-full rounded-lg border border-gray-600 bg-gray-700 p-4 pl-10 text-sm text-white placeholder-gray-400 outline-none autofill:bg-gray-600 autofill:text-white focus:border-amber-500 focus:ring-amber-500"
+              placeholder="Enter an ingredient to search recipes 🥗..."
+              required
+              autocomplete="off"
+            />
+            <button
+              type="submit"
+              class="search-btn absolute right-2.5 bottom-2.5 rounded-lg px-4 py-2 text-sm font-bold text-slate-900 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-amber-400"
+              id="search-btn"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+
+        <!-- == Search Results & Cards == -->
+        <h2
+          class="mb-8 hidden text-center text-2xl font-semibold"
+          id="search-result-title"
+        >
+          <!-- Recipe Ideas for Your Search: -->
+        </h2>
+
+        <div
+          class="error text-clamp-10-12 hidden text-center font-normal text-white sm:text-red-500"
+          id="error"
+        >
+          <!-- Error message -->
+        </div>
+
+        <!-- Search results Cards -->
+        <div
+          class="search-results flex flex-row flex-wrap justify-evenly gap-6"
+          id="search-results"
+        >
+          <!-- Generated based on search results (stored in ./src/js/app.js) -->
+        </div>
+
+        <!-- Modal -->
+        <div
+          id="details-modal"
+          tabindex="-1"
+          class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0"
+          role="dialog"
+          style="align-items: flex-start"
+        >
+          <div class="relative h-full w-full max-w-4xl md:h-auto">
+            <!-- Modal content autogenerated based on selected meal (stored in ./src/js/app.js)  -->
+          </div>
+        </div>
+        <div
+          class="overlay fixed inset-0 z-40 hidden h-full w-full bg-slate-900 opacity-90"
+          id="overlay"
+        ></div>
+      </main>
+
+      <!-- === Footer Section === -->
+      <footer
+        class="footer anim-down absolute bottom-0 left-0 mt-16 w-full p-4 sm:p-6"
+      >
+        <div class="mx-auto max-w-screen-xl">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center">
+              <img
+                src="./src/icons/apple-touch-icon.png"
+                class="mr-3 h-auto w-9 sm:w-11"
+                alt="foodie fetch logo"
+              />
+              <span
+                class="text-clamp-12-17 self-center whitespace-nowrap font-semibold text-white"
+                >AIFoodFlow</span
+              >
+            </div>
+          </div>
+          <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+
+          <div class="sm:flex sm:items-center sm:justify-between">
+            <!-- Copyright © -->
+            <span
+              class="flex flex-wrap justify-center gap-1 text-center text-sm text-gray-400"
+              >© 2024 AIFoodFlow™. Developed by
+              <a
+                target="_blank"
+                class="bg-gradient-to-r from-emerald-600 to-amber-500 bg-clip-text text-transparent"
+                >Philo - Sara - Mekky - Salma - S7S</a
+              >
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./src/js/food-quotes.js"></script>
+    <script src="./src/js/app.js"></script>
+
+    <!-- 
+      * Hidden Elements *
+      These items are hidden because they'll be dynamically generated and I want the tailwind build process to include their classes in the ./src/css/tailwind.css file 
+    -->
+    <!-- Meal Cards -->
+    <div
+      class="card w-sm mx-auto mb-4 hidden max-w-full border-spacing-4 rounded-lg border border-gray-700 bg-gray-800 shadow"
+    >
+      <div class="card-img-container rounded">
+        <img
+          class="rounded-t-lg object-cover"
+          src=""
+          alt="card image showing recipe preview"
+        />
+      </div>
+      <div class="p-5">
+        <h5 class="mb-2 text-center text-xl font-medium text-white">
+          <!-- Recipe Name -->
+        </h5>
+        <div class="flex w-full items-center justify-center">
+          <button
+            class="recipe-btn mt-4 inline-flex items-center rounded-lg bg-teal-600 px-3 py-2 text-center text-sm font-medium text-slate-900 transition duration-300 ease-in-out hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-amber-400"
+            id="recipe-btn"
+            data-id="${meal.idMeal}"
+            type="button"
+          >
+            <!-- Recipe Details 🍲 -->
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Meal Details -->
+    <div class="relative mx-auto hidden max-w-4xl rounded-lg bg-gray-700">
+      <!-- Modal header -->
+      <div
+        class="flex items-center justify-between rounded-t border-b border-gray-600 p-5"
+      >
+        <h3
+          class="text-clamp-12-17 font-medium capitalize text-white"
+          id="modal-recipe-title"
+        >
+          <!-- Recipe Name 🥘 -->
+        </h3>
+        <button
+          type="button"
+          id="close-btn"
+          class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-600 hover:text-white"
+          onclick="closeModal()"
+        >
+          <svg
+            aria-hidden="true"
+            class="h-5 w-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="space-y-6 p-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <h3 class="text-clamp-12-17">
+            <!-- Recipe Preparation 📝🍳 -->
+          </h3>
+          <div class="rounded border px-4 py-0.5 md:px-8">
+            <span
+              class="text-center text-sm font-semibold text-white"
+              id="modal-recipe-category"
+            >
+              <!-- 🍽️ Recipe Category -->
+            </span>
+          </div>
+        </div>
+        <p
+          class="text-sm leading-relaxed text-gray-400 md:text-base"
+          id="modal-preparation-instructions"
+        >
+          <!-- Recipe Instructions -->
+        </p>
+      </div>
+      <!-- Modal footer -->
+      <div
+        class="flex flex-col items-center gap-8 space-x-2 rounded-b border-t border-gray-600 p-6"
+      >
+        <h3 class="text-clamp-12-17 text-center">
+          <!-- Recipe Tutorial Video 🎥👨‍🍳 -->
+        </h3>
+        <div class="h-full w-full">
+          <iframe
+            id="modal-yt-video"
+            class="video-embed mx-auto"
+            src=""
+            title="Recipe Tutorial Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <!-- End Hidden Elements -->
+  </body>
+</html>
